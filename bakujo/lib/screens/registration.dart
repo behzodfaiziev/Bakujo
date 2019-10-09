@@ -94,7 +94,7 @@ class _RegistrationState extends State<Registration> {
                         height: screenAwareSize(20, context),
                       ),
                       Container(
-                          height: screenAwareSize(50, context),
+                          height: screenAwareSize(40, context),
                           width: _widthScreen - screenAwareSize(120, context),
                           child: FlatButton(
                             color: Colors.black12,
