@@ -102,7 +102,7 @@ class _RegistrationState extends State<Registration> {
                               'ДАЛЕЕ',
                             ),
                             onPressed: () {
-                              Navigator.of(context).pushNamed('/otp');
+                              Navigator.of(context).pushReplacementNamed ('/home');
                             },
                           )),
                       SizedBox(

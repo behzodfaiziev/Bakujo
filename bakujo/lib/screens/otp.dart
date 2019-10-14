@@ -66,7 +66,7 @@ class _OptState extends State<Otp> {
                         'ДАЛЕЕ',
                       ),
                       onPressed: () {
-                        Navigator.of(context).pushNamed('/otp');
+                       
                       },
                     )),
               ],
