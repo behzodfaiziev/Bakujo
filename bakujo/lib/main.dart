@@ -17,11 +17,11 @@ void main() async {
     debugShowCheckedModeBanner: false,
     title: 'Bakujo',
     theme: ThemeData(
-      primarySwatch: Colors.blue,
-      accentColor: Colors.blueAccent,
-    ),
+        primarySwatch: Colors.blue,
+        accentColor: Colors.blueAccent,
+        indicatorColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.blue, size: 30, opacity: 1)),
     home: _defaultHome,
     onGenerateRoute: RouteGenerator.generateRoute,
   ));
 }
-
