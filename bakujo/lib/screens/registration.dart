@@ -17,9 +17,9 @@ class _RegistrationState extends State<Registration> {
   GlobalKey<FormState> _formStateKey = GlobalKey<FormState>();
 
   Future<void> verifyNumber() async {
-    if (!_formStateKey.currentState.validate()) {
+    if (!_formStateKey.currentState.validate()) 
       return;
-    }
+    
     _formStateKey.currentState.save();
 
     setState(() {
@@ -39,8 +39,8 @@ class _RegistrationState extends State<Registration> {
         (AuthException exception) {
       print('${exception.message}');
       setState(() {
-      this.sentVerification = false;
-    });
+        this.sentVerification = false;
+      });
     };
 
     final PhoneCodeSent receivedSmsCode = (String verId, [int forceCodeSent]) {
@@ -51,6 +51,10 @@ class _RegistrationState extends State<Registration> {
         'phoneNumber': this.phoneNumber,
         'verificationId': verId
       };
+
+      setState(() {
+        sentVerification = false;
+      });
 
       Navigator.of(context).pushNamed('/otp', arguments: toOpt);
     };

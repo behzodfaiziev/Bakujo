@@ -1,24 +1,27 @@
 import 'package:bakujo/commons/generate_routes.dart';
+import 'package:bakujo/screens/home.dart';
 import 'package:bakujo/screens/registration.dart';
+import 'package:bakujo/services/auth_state.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  Widget _defaultHome = new Registration();
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Bakujo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        accentColor: Colors.blueAccent,
-      
-      ),
-      home: Registration(),
-      initialRoute: '/',
-      onGenerateRoute: RouteGenerator.generateRoute,
-    );
+  // Get result of the login function.
+  bool _result = await AuthState().currentUser();
+  if (_result) {
+    _defaultHome = Home();
   }
+
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: 'Bakujo',
+    theme: ThemeData(
+      primarySwatch: Colors.blue,
+      accentColor: Colors.blueAccent,
+    ),
+    home: _defaultHome,
+    onGenerateRoute: RouteGenerator.generateRoute,
+  ));
 }
+
