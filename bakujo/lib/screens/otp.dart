@@ -1,13 +1,15 @@
 import 'package:bakujo/commons/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_verification_code_input/flutter_verification_code_input.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class Otp extends StatefulWidget {
-  @override
-  _OptState createState() => _OptState();
-}
+class Otp extends StatelessWidget {
+  String phoneNumber;
+  String verificationId;
 
-class _OptState extends State<Otp> {
+  Otp(Map<String, String> receivedData) {
+    this.phoneNumber = receivedData['phoneNumber'];
+    this.verificationId = receivedData['verificationId'];
+  }
   @override
   Widget build(BuildContext context) {
     final double _widthScreen = MediaQuery.of(context).size.width;
@@ -34,26 +36,26 @@ class _OptState extends State<Otp> {
                 ),
                 SizedBox(height: screenAwareSize(20, context)),
                 Text(
-                  'Пожалуйста, введите код подтверждения, отправленный +992 933026202',
+                  'Пожалуйста, введите код подтверждения, отправленный ${this.phoneNumber}',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: screenAwareSize(12, context)),
                 ),
                 SizedBox(height: screenAwareSize(10, context)),
-                VerificationCodeInput(
-                  itemDecoration: BoxDecoration(
-                      border:
-                          Border(bottom: BorderSide(color: Colors.white70))),
-                  autofocus: true,
-                  textStyle: TextStyle(
-                      color: Colors.white,
-                      fontSize: screenAwareSize(15, context)),
-                  keyboardType: TextInputType.number,
-                  length: 4,
-                  onCompleted: (values) {
-                    print(values);
-                  },
+                SizedBox(
+                  child: TextFormField(
+                      style: TextStyle(color: Colors.white),
+                      keyboardType: TextInputType.number,
+                      cursorColor: Colors.white,
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white)),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white)),
+                      )),
+                  width: _widthScreen - screenAwareSize(140, context),
                 ),
                 SizedBox(height: screenAwareSize(20, context)),
                 Container(
@@ -65,9 +67,7 @@ class _OptState extends State<Otp> {
                       child: Text(
                         'ДАЛЕЕ',
                       ),
-                      onPressed: () {
-                       
-                      },
+                      onPressed: () {},
                     )),
               ],
             ),
@@ -80,3 +80,4 @@ class _OptState extends State<Otp> {
     );
   }
 }
+

@@ -1,5 +1,4 @@
 import 'package:bakujo/commons/generate_routes.dart';
-import 'package:bakujo/screens/otp.dart';
 import 'package:bakujo/screens/registration.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +13,8 @@ class MyApp extends StatelessWidget {
       title: 'Bakujo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        accentColor: Colors.blueAccent,
+      
       ),
       home: Registration(),
       initialRoute: '/',

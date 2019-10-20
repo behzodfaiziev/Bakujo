@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
-
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(builder: (_) => Registration());
       case '/otp':
-        return MaterialPageRoute(builder: (_) => Otp());
+        return MaterialPageRoute(
+            builder: (_) => Otp(args as Map<String, String>));
       case '/home':
         return MaterialPageRoute(builder: (_) => Home());
       default:

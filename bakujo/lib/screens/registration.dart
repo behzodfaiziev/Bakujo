@@ -1,4 +1,5 @@
 import 'package:bakujo/commons/utils.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Registration extends StatefulWidget {
@@ -7,19 +8,75 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
+  String phoneNumber;
+  String smsCode;
+  String verificationId;
+
+  bool sentVerification = false;
+
+  GlobalKey<FormState> _formStateKey = GlobalKey<FormState>();
+
+  Future<void> verifyNumber() async {
+    if (!_formStateKey.currentState.validate()) {
+      return;
+    }
+    _formStateKey.currentState.save();
+
+    setState(() {
+      this.sentVerification = true;
+    });
+
+    final PhoneCodeAutoRetrievalTimeout autoRertrieve = (String verId) {
+      this.verificationId = verId;
+    };
+
+    final PhoneVerificationCompleted verificationCompleted =
+        (AuthCredential credential) {
+      print('verified');
+    };
+
+    final PhoneVerificationFailed verificationFailed =
+        (AuthException exception) {
+      print('${exception.message}');
+      setState(() {
+      this.sentVerification = false;
+    });
+    };
+
+    final PhoneCodeSent receivedSmsCode = (String verId, [int forceCodeSent]) {
+      this.verificationId = verId;
+      print('sent code : ${verId}');
+
+      Map<String, String> toOpt = {
+        'phoneNumber': this.phoneNumber,
+        'verificationId': verId
+      };
+
+      Navigator.of(context).pushNamed('/otp', arguments: toOpt);
+    };
+
+    await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: this.phoneNumber,
+        codeAutoRetrievalTimeout: autoRertrieve,
+        codeSent: receivedSmsCode,
+        timeout: const Duration(seconds: 5),
+        verificationCompleted: verificationCompleted,
+        verificationFailed: verificationFailed);
+  }
+
   @override
   Widget build(BuildContext context) {
     final double _heightScreen = MediaQuery.of(context).size.height;
     final double _widthScreen = MediaQuery.of(context).size.width;
 
-    return GestureDetector( 
-      onTap: (){
-         FocusScope.of(context).requestFocus(FocusNode());
-      },
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: Theme.of(context).primaryColor,
-        body: Stack(
+    return GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          backgroundColor: Theme.of(context).primaryColor,
+          body: Stack(
             fit: StackFit.expand,
             children: [
               FractionallySizedBox(
@@ -82,14 +139,25 @@ class _RegistrationState extends State<Registration> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: screenAwareSize(40, context)),
-                        child: TextFormField(
-                          autofocus: true,
-                          keyboardType: TextInputType.phone,
-                          decoration: InputDecoration(prefixText: '+992'),
-                        ),
-                      ),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: screenAwareSize(40, context)),
+                          child: Form(
+                            key: _formStateKey,
+                            child: TextFormField(
+                              autofocus: true,
+                              keyboardType: TextInputType.phone,
+                              decoration: InputDecoration(prefixText: '+992'),
+                              validator: (value) {
+                                if (value.isEmpty)
+                                  return "Пожалуйста, введите свой номер телефона.";
+                                else
+                                  return null;
+                              },
+                              onSaved: (value) {
+                                this.phoneNumber = '+992$value';
+                              },
+                            ),
+                          )),
                       SizedBox(
                         height: screenAwareSize(20, context),
                       ),
@@ -97,14 +165,18 @@ class _RegistrationState extends State<Registration> {
                           height: screenAwareSize(40, context),
                           width: _widthScreen - screenAwareSize(120, context),
                           child: FlatButton(
-                            color: Colors.black12,
-                            child: Text(
-                              'ДАЛЕЕ',
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).pushReplacementNamed ('/home');
-                            },
-                          )),
+                              color: Colors.black12,
+                              child: (!this.sentVerification)
+                                  ? Text(
+                                      'ДАЛЕЕ',
+                                    )
+                                  : SizedBox(
+                                      height: screenAwareSize(20, context),
+                                      width: screenAwareSize(20, context),
+                                      child: CircularProgressIndicator(
+                                          strokeWidth: 2),
+                                    ),
+                              onPressed: verifyNumber)),
                       SizedBox(
                         height: screenAwareSize(20, context),
                       ),
