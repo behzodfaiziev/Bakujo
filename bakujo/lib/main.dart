@@ -5,7 +5,8 @@ import 'package:bakujo/services/auth_state.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
-  Widget _defaultHome = new Registration();
+  WidgetsFlutterBinding.ensureInitialized();
+  Widget _defaultHome = new Home();  //Registration();
 
   // Get result of the login function.
   bool _result = await AuthState().currentUser();

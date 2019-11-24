@@ -6,7 +6,7 @@ class AuthState {
   //is current user exist
   Future<bool> currentUser() async {
     return await FirebaseAuth.instance.currentUser().then((firebaseUser) {
-      return true;
+      return (firebaseUser != null) ? true : false;
     }).catchError((error) {
       return false;
     });
