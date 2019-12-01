@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Widget _defaultHome = new Home();  //Registration();
+  Widget _defaultHome = Registration();
 
   // Get result of the login function.
   bool _result = await AuthState().currentUser();

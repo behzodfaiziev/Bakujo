@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1079422896387",
+    "firebase_url": "https://bakujo-d04a2.firebaseio.com",
+    "project_id": "bakujo-d04a2",
+    "storage_bucket": "bakujo-d04a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1079422896387:android:233c2ff39eebe04f8a0136",
+        "android_client_info": {
+          "package_name": "tj.hamroh.Bakujo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1079422896387-gsvc6cqglt1gh0pqbpiieg0elhub3q07.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA12dUrx7c5u0m1HIR8Ji8Xq2EcxhVLbGo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1079422896387-gsvc6cqglt1gh0pqbpiieg0elhub3q07.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1079422896387-bh46v219vsjfkn2maauitnpkt7t4vt67.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "tj.hamroh.Bakujo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
