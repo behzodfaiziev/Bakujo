@@ -25,34 +25,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      drawer: Drawer(
-//        child: ListView(
-//          padding: EdgeInsets.only(top: screenAwareSize(25, context)),
-//          children: [
-//            Container(
-//              child: CircleAvatar(
-//                radius: screenAwareSize(40, context),
-//                child: Text("AA"),
-//              ),
-//            ),
-//            SizedBox(height: screenAwareSize(50, context),),
-//            ListTile(
-//              leading: Icon(Icons.account_circle,),
-//              title: Text('My Profile'),
-//            ),
-//            ListTile(
-//              leading: Icon(Icons.exit_to_app),
-//              title: Text('Sign Out'),
-//              onTap: (){
-//                 AuthState().singOut();
-//              },
-//            )
-//          ],
-//        ),
-//      ),
-//      appBar: AppBar(
-//        elevation: 0,
-//      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: widget.tabBarIndex,
         type: BottomNavigationBarType.fixed,

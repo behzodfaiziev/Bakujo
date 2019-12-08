@@ -29,3 +29,15 @@ BoxShadow hamrohCardShadow() {
   return BoxShadow(
       color: Colors.black38, blurRadius: 10 , spreadRadius: 0.4);
 }
+
+  Row hamroh_rating_Widget(String ratingPoint) {
+    return Row(
+              children: <Widget>[
+                Icon(
+                  Icons.star,
+                  color: Colors.yellow,
+                ),
+                Text(ratingPoint)
+              ],
+            );
+  }
