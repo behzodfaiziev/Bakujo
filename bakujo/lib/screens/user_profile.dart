@@ -12,13 +12,14 @@ class _UserProfileState extends State<UserProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(elevation: 0,),
       body: Container(
         child: Center(
           child: RaisedButton(
             child: Text('Sign out'),
             onPressed: () {
               FirebaseAuth.instance.signOut().then((_) {
-                Navigator.pushReplacementNamed(context, '/');
+                Navigator.of(context).pushReplacementNamed('/');
               });
             },
           ),
