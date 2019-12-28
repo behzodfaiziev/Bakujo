@@ -1,6 +1,5 @@
 import 'package:bakujo/commons/utils.dart';
 import 'package:bakujo/models/user.dart';
-import 'package:bakujo/theme/styles.dart';
 import 'package:bakujo/widgets/resultTrip_widget.dart';
 import 'package:bakujo/widgets/searchtrip_widget.dart';
 import 'package:flutter/cupertino.dart';

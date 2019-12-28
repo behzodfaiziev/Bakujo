@@ -3,6 +3,7 @@ import 'package:bakujo/screens/detailsTrip.dart';
 import 'package:bakujo/screens/home.dart';
 import 'package:bakujo/screens/otp.dart';
 import 'package:bakujo/screens/registration.dart';
+import 'package:bakujo/screens/search.dart';
 import 'package:bakujo/screens/user_profile.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,8 @@ class RouteGenerator {
       return MaterialPageRoute(builder: (_) => UserProfile());
       case '/tripDetail':
       return MaterialPageRoute(builder: (_) => DetailsTrip(user: args as User,));
+      case '/search':
+       return MaterialPageRoute(builder: (_) => Search());
       
       default:
         return _errorRoute();

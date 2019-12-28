@@ -1,8 +1,6 @@
-import 'package:bakujo/commons/utils.dart';
 import 'package:bakujo/screens/addtrip.dart';
 import 'package:bakujo/screens/mytrip.dart';
 import 'package:bakujo/screens/searchpage.dart';
-import 'package:bakujo/services/auth_state.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
