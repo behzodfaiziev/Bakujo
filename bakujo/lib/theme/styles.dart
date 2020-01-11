@@ -22,8 +22,22 @@ InputDecoration searchTextFieldDecoration(
   );
 }
 
+//TextField Decoration
+InputDecoration hamrohTextFieldDecoration(String placeholder, String hintText) {
+  return InputDecoration(
+    labelText: placeholder,
+    labelStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.w300),
+    hintText: hintText,
+    hintStyle: TextStyle(color: Colors.black54, fontWeight: FontWeight.w300),
+  );
+}
+
 TextStyle regularTextStyle(Color color, double size) {
   return TextStyle(color: color, fontSize: size, fontWeight: FontWeight.w500);
+}
+
+TextStyle assignTextStyle(Color color, double size, FontWeight fontWeight) {
+  return TextStyle(color: color, fontSize: size, fontWeight: fontWeight);
 }
 
 //Cards Shadow
